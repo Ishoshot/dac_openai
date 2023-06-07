@@ -30,3 +30,4 @@
 {"date":"26-4-2023 14:21:11","prompt":"Show balance for","data":"{\"Intent\": \"acct_bal\", \"AccountNumber\": \"\"}"}
 {"date":"26-4-2023 14:21:11","prompt":"Show balance for","data":"{\"Intent\": \"acct_bal\", \"AccountNumber\": \"\"}"}
 {"date":"26-4-2023 14:21:11","prompt":"Show balance for","data":"{\"Intent\": \"acct_bal\", \"AccountNumber\": \"\"}"}
+{"date":"26-4-2023 17:52:6","prompt":"Show balance for 3119025601","data":"{\"Intent\": \"acct_bal\", \"AccountNumber\": \"3119025601\"}"}
