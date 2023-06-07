@@ -2,18 +2,20 @@ const Connection = require('../utils/Connection')
 const connection = new Connection()
 const fs = require('fs')
 const { getDate, getFileDate, isWeekend, getDateAndTime } = require('./date')
+const dotenv = require('dotenv')
+dotenv.config()
 
 class Logger {
   logToDB(prompt, data) {
     const con = connection.create()
     //create table if it doesn't exist
     var sql =
-      'CREATE TABLE IF NOT EXISTS logs_openai (id INT AUTO_INCREMENT PRIMARY KEY, prompt VARCHAR(255), response VARCHAR(255), date DATETIME)'
+      `CREATE TABLE IF NOT EXISTS ${process.env.MYSQL_DB} (id INT AUTO_INCREMENT PRIMARY KEY, prompt VARCHAR(255), response VARCHAR(255), date DATETIME)`
     con.query(sql, function (err, result) {
       if (err) throw err
       console.log('Table created')
     })
-    var sql = `INSERT INTO logs_openai (prompt, response, date) VALUES ('${prompt}', '${data.data}', now())`
+    var sql = `INSERT INTO ${process.env.MYSQL_DB} (prompt, response, date) VALUES ('${prompt}', '${data.data}', now())`
     con.query(sql, function (erro, result) {
       if (erro) throw erro
       console.log('Inserted')
