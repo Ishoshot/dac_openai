@@ -8,6 +8,9 @@ dotenv.config()
 class Logger {
   logToDB(prompt, data) {
     const table = process.env.ENV === 'production' ? 'openai_prod' : 'openai_stag'
+    console.log(table)
+    console.log(process.env.ENV);
+    console.log(process.env.MYSQL_DB);
     const con = connection.create()
     //create table if it doesn't exist
     var sql =
