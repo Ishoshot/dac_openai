@@ -8,7 +8,7 @@ class Connection {
       host: process.env.MYSQL_HOST,
       user: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASS,
-      database: process.env.MYSQL_DB,
+      database: process.env.ENV === 'production' ? process.env.MYSQL_DB_PROD : process.env.MYSQL_DB,
     })
   }
 
