@@ -7,15 +7,16 @@ dotenv.config()
 
 class Logger {
   logToDB(prompt, data) {
+    const table = process.env.ENV === 'production' ? process.env.MYSQL_DB_PROD : process.env.MYSQL_DB
     const con = connection.create()
     //create table if it doesn't exist
     var sql =
-      `CREATE TABLE IF NOT EXISTS ${process.env.MYSQL_DB} (id INT AUTO_INCREMENT PRIMARY KEY, prompt VARCHAR(255), response VARCHAR(255), date DATETIME)`
+      `CREATE TABLE IF NOT EXISTS ${table ?? 'openai'} (id INT AUTO_INCREMENT PRIMARY KEY, prompt VARCHAR(255), response VARCHAR(255), date DATETIME)`
     con.query(sql, function (err, result) {
       if (err) throw err
       console.log('Table created')
     })
-    var sql = `INSERT INTO ${process.env.MYSQL_DB} (prompt, response, date) VALUES ('${prompt}', '${data.data}', now())`
+    var sql = `INSERT INTO ${table ?? 'openai'} (prompt, response, date) VALUES ('${prompt}', '${data.data}', now())`
     con.query(sql, function (erro, result) {
       if (erro) throw erro
       console.log('Inserted')
